@@ -8,6 +8,28 @@
     --text-muted: #94a3b8;
     --twitter-bg: rgba(29, 161, 242, 0.1);
     --twitter-color: #1da1f2;
+    --btn-bg: rgba(255, 255, 255, 0.1);
+    --btn-hover: rgba(255, 255, 255, 0.2);
+    --btn-text: #f8fafc;
+    --date-bg: rgba(0, 0, 0, 0.3);
+    --title-gradient-1: #fff;
+    --title-gradient-2: #94a3b8;
+}
+
+body.light-theme {
+    --bg-dark: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-border: rgba(0, 0, 0, 0.1);
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --btn-bg: rgba(0, 0, 0, 0.05);
+    --btn-hover: rgba(0, 0, 0, 0.1);
+    --btn-text: #334155;
+    --date-bg: rgba(0, 0, 0, 0.05);
+    --title-gradient-1: #0f172a;
+    --title-gradient-2: #475569;
 }
 
 * {
@@ -24,9 +46,9 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Dynamic background */
 .background-elements {
     position: fixed;
     top: 0;
@@ -82,6 +104,12 @@ header {
     border-bottom: 1px solid var(--card-border);
 }
 
+.header-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
 .logo {
     display: flex;
     align-items: center;
@@ -98,7 +126,7 @@ header {
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: -0.025em;
-    background: linear-gradient(135deg, #fff, #94a3b8);
+    background: linear-gradient(135deg, var(--title-gradient-1), var(--title-gradient-2));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -107,19 +135,24 @@ header {
     color: var(--text-muted);
 }
 
-.refresh-btn {
+button {
+    font-family: inherit;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    background: var(--primary);
-    color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1rem;
     border-radius: 8px;
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
+}
+
+.refresh-btn {
+    background: var(--primary);
+    color: white;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
@@ -127,6 +160,21 @@ header {
     background: var(--primary-hover);
     transform: translateY(-2px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.secondary-btn, .icon-btn, .copy-btn {
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    border: 1px solid var(--card-border);
+}
+
+.secondary-btn:hover, .icon-btn:hover, .copy-btn:hover {
+    background: var(--btn-hover);
+}
+
+.icon-btn {
+    padding: 0.75rem;
+    font-size: 1.1rem;
 }
 
 .refresh-btn.spinning .icon-refresh {
@@ -137,7 +185,6 @@ header {
     100% { transform: rotate(360deg); }
 }
 
-/* Loader */
 .loader-container {
     display: flex;
     flex-direction: column;
@@ -149,7 +196,7 @@ header {
 .spinner {
     width: 40px;
     height: 40px;
-    border: 3px solid rgba(255, 255, 255, 0.1);
+    border: 3px solid rgba(150, 150, 150, 0.2);
     border-radius: 50%;
     border-top-color: var(--primary);
     animation: spin 1s linear infinite;
@@ -160,11 +207,10 @@ header {
     display: none !important;
 }
 
-/* Error */
 .error-container {
     background: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.2);
-    color: #fca5a5;
+    color: #ef4444;
     padding: 1.5rem;
     border-radius: 12px;
     display: flex;
@@ -177,7 +223,6 @@ header {
     font-size: 1.5rem;
 }
 
-/* Notes Feed */
 .notes-container {
     display: flex;
     flex-direction: column;
@@ -198,7 +243,7 @@ header {
 
 .note-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(150, 150, 150, 0.3);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
@@ -211,21 +256,22 @@ header {
 .note-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: white;
+    color: var(--text-main);
 }
 
 .note-date {
     font-size: 0.85rem;
     color: var(--text-muted);
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--date-bg);
     padding: 0.25rem 0.75rem;
     border-radius: 999px;
     white-space: nowrap;
 }
 
 .note-content {
-    color: #cbd5e1;
+    color: var(--text-main);
     font-size: 0.95rem;
+    opacity: 0.9;
 }
 
 .note-content p {
@@ -239,15 +285,16 @@ header {
 }
 
 .note-content a:hover {
-    color: #60a5fa;
+    color: var(--primary-hover);
     text-decoration: underline;
 }
 
 .note-actions {
     display: flex;
     justify-content: flex-end;
+    gap: 0.75rem;
     margin-top: 0.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--card-border);
     padding-top: 1rem;
 }
 
@@ -272,11 +319,23 @@ header {
     border-color: rgba(29, 161, 242, 0.4);
 }
 
+.copy-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
 @media (max-width: 640px) {
     header {
         flex-direction: column;
         align-items: flex-start;
         gap: 1.5rem;
+    }
+    
+    .header-actions {
+        width: 100%;
+        flex-wrap: wrap;
     }
     
     .note-header {

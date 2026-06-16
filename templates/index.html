@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Boxicons for modern icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
@@ -27,10 +26,19 @@
                 <p>Stay informed with the latest release notes and features.</p>
             </div>
             
-            <button id="refresh-btn" class="refresh-btn">
-                <i class='bx bx-refresh icon-refresh'></i>
-                <span>Refresh Notes</span>
-            </button>
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                    <i class='bx bx-sun' id="theme-icon"></i>
+                </button>
+                <button id="export-btn" class="secondary-btn">
+                    <i class='bx bx-download'></i>
+                    <span class="btn-text">Export CSV</span>
+                </button>
+                <button id="refresh-btn" class="refresh-btn">
+                    <i class='bx bx-refresh icon-refresh'></i>
+                    <span class="btn-text">Refresh</span>
+                </button>
+            </div>
         </header>
 
         <div id="loader" class="loader-container">
