@@ -11,50 +11,86 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <div class="background-elements">
+    <div class="background-elements" aria-hidden="true">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
     </div>
 
-    <main class="container">
-        <header>
+    <header class="sticky-header">
+        <div class="header-container">
             <div class="header-content">
                 <div class="logo">
-                    <i class='bx bx-data'></i>
+                    <i class='bx bx-data' aria-hidden="true"></i>
                     <h1>BigQuery Updates</h1>
                 </div>
                 <p>Stay informed with the latest release notes and features.</p>
             </div>
             
             <div class="header-actions">
-                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
-                    <i class='bx bx-sun' id="theme-icon"></i>
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark and light mode" title="Toggle Theme">
+                    <i class='bx bx-sun' id="theme-icon" aria-hidden="true"></i>
                 </button>
-                <button id="export-btn" class="secondary-btn">
-                    <i class='bx bx-download'></i>
+                <button id="export-btn" class="secondary-btn" aria-label="Export notes to CSV file">
+                    <i class='bx bx-download' aria-hidden="true"></i>
                     <span class="btn-text">Export CSV</span>
                 </button>
-                <button id="refresh-btn" class="refresh-btn">
-                    <i class='bx bx-refresh icon-refresh'></i>
+                <button id="refresh-btn" class="refresh-btn" aria-label="Refresh release notes">
+                    <i class='bx bx-refresh icon-refresh' aria-hidden="true"></i>
                     <span class="btn-text">Refresh</span>
                 </button>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <div id="loader" class="loader-container">
-            <div class="spinner"></div>
+    <main class="container">
+        <!-- Search and Filter Bar -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <i class='bx bx-search' aria-hidden="true"></i>
+                <input type="text" id="search-input" placeholder="Search features, fixes, or keywords..." aria-label="Search release notes">
+            </div>
+        </div>
+
+        <!-- Loader -->
+        <div id="loader" class="state-container" aria-live="polite">
+            <div class="spinner" aria-hidden="true"></div>
             <p>Fetching latest notes...</p>
         </div>
 
-        <div id="error-container" class="error-container hidden">
-            <i class='bx bx-error-circle'></i>
-            <p id="error-message">Failed to fetch updates.</p>
+        <!-- Error State -->
+        <div id="error-container" class="state-container error-state hidden" aria-live="assertive">
+            <i class='bx bx-error-circle' aria-hidden="true"></i>
+            <div>
+                <p id="error-message">Failed to fetch updates.</p>
+                <button id="retry-btn" class="secondary-btn mt-2">Try Again</button>
+            </div>
         </div>
 
-        <section id="notes-container" class="notes-container hidden">
-            <!-- Notes will be injected here via JS -->
+        <!-- Empty State -->
+        <div id="empty-container" class="state-container empty-state hidden" aria-live="polite">
+            <i class='bx bx-folder-open' aria-hidden="true"></i>
+            <p>No release notes found matching your criteria.</p>
+            <button id="clear-search-btn" class="secondary-btn mt-2">Clear Search</button>
+        </div>
+
+        <!-- Notes Feed -->
+        <section id="notes-container" class="notes-container hidden" aria-label="Release Notes Feed">
+            <!-- Notes injected here via JS -->
         </section>
+
+        <!-- Load More Button -->
+        <div class="load-more-container hidden" id="load-more-container">
+            <button id="load-more-btn" class="secondary-btn" aria-label="Load more notes">Load More</button>
+        </div>
     </main>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top hidden" aria-label="Scroll back to top">
+        <i class='bx bx-up-arrow-alt' aria-hidden="true"></i>
+    </button>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
     <script src="/static/script.js"></script>
 </body>
