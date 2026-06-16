@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigQuery Release Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Boxicons for modern icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <i class='bx bx-data'></i>
+                    <h1>BigQuery Updates</h1>
+                </div>
+                <p>Stay informed with the latest release notes and features.</p>
+            </div>
+            
+            <button id="refresh-btn" class="refresh-btn">
+                <i class='bx bx-refresh icon-refresh'></i>
+                <span>Refresh Notes</span>
+            </button>
+        </header>
+
+        <div id="loader" class="loader-container">
+            <div class="spinner"></div>
+            <p>Fetching latest notes...</p>
+        </div>
+
+        <div id="error-container" class="error-container hidden">
+            <i class='bx bx-error-circle'></i>
+            <p id="error-message">Failed to fetch updates.</p>
+        </div>
+
+        <section id="notes-container" class="notes-container hidden">
+            <!-- Notes will be injected here via JS -->
+        </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
