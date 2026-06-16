@@ -6,8 +6,12 @@ A modern, dynamic web application built with Python Flask and vanilla JavaScript
 
 - **Live Aggregation**: Automatically fetches the latest release notes directly from the official Google Cloud BigQuery XML (Atom) feed.
 - **CORS Bypass**: Utilizes a Python Flask backend as a proxy to safely bypass browser CORS restrictions and parse the XML into clean JSON.
-- **Modern UI/UX**: Features a premium dark-mode interface with glassmorphism effects, dynamic backgrounds, and loading states.
-- **One-Click Social Sharing**: Includes a built-in "Share Update" button for every note to instantly tweet about specific BigQuery updates.
+- **Modern UI/UX**: Features a premium interface with glassmorphism effects, dynamic backgrounds, and a **Light/Dark Mode toggle**. Includes a sticky header for easy navigation.
+- **Search & Filter**: Real-time search bar to instantly filter release notes by title or content.
+- **Pagination**: Implements a "Load More" system to prevent overwhelming walls of text, loading 10 notes at a time.
+- **Export to CSV**: Easily download your currently filtered release notes into a formatted CSV file.
+- **One-Click Actions**: Every note card includes a "Copy Text" button for clipboard copying and a "Share Update" button to instantly tweet about specific BigQuery updates.
+- **Accessibility & Feedback**: Global toast notifications for system events (copying, exporting), friendly empty/error states with retry logic, and full screen reader/keyboard navigation support.
 
 ## Architecture
 
@@ -46,8 +50,11 @@ A modern, dynamic web application built with Python Flask and vanilla JavaScript
 ## Usage
 
 * Upon loading, the app will automatically fetch and display the latest release notes.
-* Click the **Refresh Notes** button at the top to re-fetch the feed manually.
-* Click **Share Update** at the bottom of any release note card to post a formatted snippet to X (Twitter).
+* Use the **Search Bar** below the header to filter notes by keyword.
+* Toggle the **Sun/Moon icon** to switch between Light and Dark themes.
+* Click **Export CSV** to download the currently visible notes.
+* Use the **Copy text** or **Share Update** buttons on individual cards for quick sharing.
+* Scroll down and use the **Load More** button to view older notes, and the **Back to Top** floating button to instantly return to the header.
 
 ## License
 MIT License
